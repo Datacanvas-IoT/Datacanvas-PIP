@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "datacanvas"
+version = "1.0.0"
+description = "Official Python SDK for the DataCanvas IoT Platform — A modern, type-safe, resource-based client library"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.8"
+authors = [
+    {name = "DataCanvas Team"},
+]
+keywords = [
+    "datacanvas",
+    "iot",
+    "sdk",
+    "api-client",
+    "sensors",
+    "data-platform",
+    "devices",
+    "rest-api",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering",
+    "Typing :: Typed",
+]
+dependencies = [
+    "requests>=2.28.0,<3",
+]
+
+[project.urls]
+Homepage = "https://github.com/Datacanvas-IoT/Datacanvas-PIP"
+Repository = "https://github.com/Datacanvas-IoT/Datacanvas-PIP.git"
+Issues = "https://github.com/Datacanvas-IoT/Datacanvas-PIP/issues"
+Changelog = "https://github.com/Datacanvas-IoT/Datacanvas-PIP/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "mypy>=1.0",
+    "ruff>=0.4",
+    "responses>=0.23",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+datacanvas = ["py.typed"]
+
+[tool.mypy]
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+target-version = "py38"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "DTZ", "T20", "ICN"]
+ignore = ["S101"]  # Allow assert in tests
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
