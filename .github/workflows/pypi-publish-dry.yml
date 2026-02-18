@@ -1,0 +1,31 @@
+name: Publish to PyPI (dry-run)
+
+# Manual workflow to test the build and packaging steps without performing a real publish.
+on:
+  workflow_dispatch:
+
+jobs:
+  dry-publish:
+    name: Dry publish (manual)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tools
+        run: python -m pip install --upgrade pip build twine
+
+      - name: Build package
+        run: python -m build
+
+      - name: Check distribution
+        run: twine check dist/*
+
+      - name: List distribution artifacts
+        run: ls -lh dist/
